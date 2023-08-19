@@ -1,0 +1,24 @@
+# - name: copy/download T-SQL script
+#   win_copy:
+#     src: './MSSQLHardening.sql'
+#     dest: 'C:\SQL-SW\MSSQLHardening.sql'
+
+# - name: copy DBAMaint empty creating T-SQL script
+#   win_copy:
+#     src: './DBAMaint.sql'
+#     dest: 'C:\SQL-SW\DBAMaint.sql'
+
+- name: copy MSSQLHardening.sql
+  win_copy: src={{ item.src }} dest={{ item.dest }}
+  with_items: 
+    - { src: './MSSQLHardening.sql', dest: 'C:\SQL-SW\MSSQLHardening.sql' }
+
+
+####### Run MSSQLHardening T-SQL script ########
+- name: run MSSQLHardening
+  win_command: sqlcmd -S ukimdlmawsnod01\sqltest1 -i C:\SQL-SW\MSSQLHardening.sql -E
+   
+  register: MSSQLHardening_sql
+- name: Showing the logs of MSSQLHardening_sql  
+  debug:
+    msg: "{{ MSSQLHardening_sql }}"

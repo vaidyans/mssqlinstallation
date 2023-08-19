@@ -1,0 +1,37 @@
+# - name: copy/download T-SQL script
+#   win_copy:
+#     src: './postinstallation.sql'
+#     dest: 'C:\SQL-SW\postinstallation.sql'
+
+# - name: copy DBAMaint empty creating T-SQL script
+#   win_copy:
+#     src: './DBAMaint.sql'
+#     dest: 'C:\SQL-SW\DBAMaint.sql'
+
+- name: copy DBAMaint.sql and postinstallation.sql
+  win_copy: src={{ item.src }} dest={{ item.dest }}
+  with_items: 
+    - { src: './postinstallation.sql', dest: 'C:\SQL-SW\postinstallation.sql' }
+    - { src: './DBAMaint.sql', dest: 'C:\SQL-SW\DBAMaint.sql' }
+
+
+####### Create DBAMaint DB as a prerequisite of post installation T-SQL script ########
+- name: create DBAMaint DB
+# win_shell: "{{ item }}"
+# with_items:
+  win_command: sqlcmd -S ukimdlmawsnod01\sqltest2 -i C:\SQL-SW\DBAMaint.sql -E
+#  win_command: sqlcmd -S UKIMDLMAWSNOD01\WISESQL1 -i C:\SQL-SW\postinstallation.sql -E
+   
+  register: DBAMaint_sql
+- name: Showing the logs of DBAMaint_sql  
+  debug:
+    msg: "{{ DBAMaint_sql }}"
+
+####### Run post installation T-SQL script ########
+- name: run postinstallation
+  win_command: sqlcmd -S ukimdlmawsnod01\sqltest2 -i C:\SQL-SW\postinstallation.sql -E
+   
+  register: postinstallation_sql
+- name: Showing the logs of postinstallation_sql  
+  debug:
+    msg: "{{ postinstallation_sql }}"

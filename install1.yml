@@ -1,0 +1,83 @@
+- name: "include base vars file"
+  include_vars: vars/basevars.yml
+
+####### Downloading software on remote machine #######
+- name: Download MSSQL 2019 binaries
+  include_tasks: tasks/task_download_mssql_binaries.yml
+  register: binary_output
+- name: Showing the download MSSQL binaries logs 
+  debug:
+    msg: "{{ binary_output }}"
+
+######## Copying PowerShell scripts to remote server ######
+- name: Copying MSSQL installation scripts and configuration file to remote windows machine
+  include_tasks: tasks/task_copy_scripts.yml
+  register: script_output
+- name: Showing the Copy scripts  logs 
+  debug:
+    msg: "{{ script_output }}"
+
+########## Installing MSSQL Setup ###############
+- name: Installing  MSSQL Instance from powershell
+  win_shell: C:\SQL-SW\MSSQLSetup.ps1
+  #async: 1200
+  vars:
+    ansible_become: true
+    ansible_become_method: runas
+    ansible_become_user: "{{ user }}"
+    ansible_become_password: "{{ password }}"
+  register: setup_output
+- name: Showing the MSSQL setup  logs 
+  debug:
+    msg: "{{ setup_output }}"
+
+- name: Reboot Server
+  include_tasks: tasks/task_win_reboot.yml
+  register: reboot_output
+- name: Showing the Reboot logs 
+  debug:
+    msg: "{{ reboot_output }}"
+
+########## Installing MSSQL Patch ###########
+- name: Installing MSSQL Patch from powershell
+  win_shell: C:\SQL-SW\MSSQLPatch.ps1
+  vars:
+    ansible_become: true
+    ansible_become_method: runas
+    ansible_become_user: "{{ user }}"
+    ansible_become_password: "{{ password }}"
+  register: patch_output
+- name: Showing the MSSQL patch  logs 
+  debug:
+    msg: "{{ patch_output }}"
+
+- name: Reboot Server
+  include_tasks: tasks/task_win_reboot.yml
+  register: reboot2_output
+- name: Showing the Reboot logs 
+  debug:
+    msg: "{{ reboot2_output }}"
+
+########### post installation T-SQL script execution ###########
+ #- name: Give confirmation for post instalation script
+     #pause:
+     #prompt: "Please enter the value - yes/no"
+     #register: result
+
+ #- name: Post installation T-SQL execution
+  # include_tasks: tasks/task_t_sql_script.yml
+- name: Post installation T-SQL execution
+  include_tasks: tasks/task_t_sql_script.yml
+  ###########when: result.user_input == "yes"
+#### This is SQL Hardening task  ########
+- name: MSSQLHardening T-SQL execution
+  include_tasks: tasks/mssql_security_hardening.yml
+#  ###########when: result.user_input == "yes"
+  
+####### Reboot Server after MSSQLHardening T-SQL script ########
+- name: Reboot Server
+  include_tasks: tasks/task_win_reboot.yml
+  register: reboot_output
+- name: Showing the Reboot logs 
+  debug:
+    msg: "{{ reboot_output }}"  

@@ -1,0 +1,91 @@
+- name: check if SQL-SW directory already exist
+  win_stat:
+    path: "{{ outdir }}"
+  register: SQL_SW_directory_info
+- name: Showing the Exists Directory details
+  debug:
+    msg: "{{ SQL_SW_directory_info }}"
+
+- name: Create SQL-SW directory
+  win_file:
+    path: "{{ outdir }}"
+    state: directory
+  when: not SQL_SW_directory_info.stat.exists
+  register: directory_output
+- name: Showing the Newly created Directory details
+  debug:
+    msg: "{{ directory_output }}"
+
+########### Downloading SQL Patch executable file ############
+- name: Check SQL Patch executable file exist or not
+  win_stat:
+    path: '{{ outdir }}\SQLServer2019-KB5011644-x64.exe'
+  register: SQL_Patch_file_info 
+
+- name: Download SQL Patch executable file
+  win_get_url:
+    url: "{{ art_url }}/SQLServer2019-KB5011644-x64.exe"
+    url_username: "{{ art_username }}"
+    url_password: "{{ art_password }}"    
+    force_basic_auth: yes
+    dest: '{{ outdir }}\SQLServer2019-KB5011644-x64.exe'
+  when: not SQL_Patch_file_info.stat.exists
+- name: Swowing the logs of Download SQL Patch executable file
+  debug:
+    msg: "{{ SQL_Patch_file_info }}"
+
+########### Downloading SSMS-Setup-ENU executable file ############
+- name: Check SSMS-Setup-ENU executable file exist or not
+  win_stat:
+    path: '{{ outdir }}\SSMS-Setup-ENU.exe'
+  register: SSMS_Setup_ENU_file_info
+
+- name: Download SSMS_Setup_ENU executable file
+  win_get_url:
+    url: "{{ art_url }}/SSMS-Setup-ENU.exe"
+    url_username: "{{ art_username }}"
+    url_password: "{{ art_password }}"
+    force_basic_auth: yes
+    dest: '{{ outdir }}\SSMS-Setup-ENU.exe'
+  when: not SSMS_Setup_ENU_file_info.stat.exists
+- name: Swowing the logs of Download SSMS_Setup_ENU executable file
+  debug:
+    msg: "{{ SSMS_Setup_ENU_file_info }}"
+
+
+########### Downloading sql_server_2019 iso file ############
+- name: Check sql_server_2019 iso file exist or not
+  win_stat:
+    path: '{{ outdir }}\en_sql_server_2019_developer_x64_dvd_baea4195.iso'
+  register: en_sql_server_2019_iso_file_info 
+
+- name: Download sql server 2019 iso file
+  win_get_url:
+    url: "{{ art_url }}/en_sql_server_2019_developer_x64_dvd_baea4195.iso"
+    url_username: "{{ art_username }}"
+    url_password: "{{ art_password }}"
+    force_basic_auth: yes
+    dest: '{{ outdir }}\en_sql_server_2019_developer_x64_dvd_baea4195.iso'
+  when: not en_sql_server_2019_iso_file_info.stat.exists
+- name: Swowing the logs of Download sql server 2019 iso file
+  debug:
+    msg: "{{ en_sql_server_2019_iso_file_info }}"
+
+  ############ Download ConfigurationFile.ini file to target machine ########
+# - name: Check ConfigurationFile.ini file exist or not
+#   win_stat:
+#     path: '{{ outdir }}\ConfigurationFile.ini'
+#   register: ConfigurationFile_file_info 
+
+- name: Download ConfigurationFile.ini file to windows machine
+  win_get_url:
+    url: "{{ art_url }}/ConfigurationFile.ini"
+    url_username: "{{ art_username }}"
+    url_password: "{{ art_password }}"
+    force_basic_auth: yes
+    dest: '{{ outdir }}\ConfigurationFile.ini'
+  register: config_output
+- name: Swowing the logs of Download ConfigurationFile.ini file
+  debug:
+    msg: "{{ config_output }}"
+  #when: not ConfigurationFile_file_info.stat.exists

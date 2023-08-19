@@ -1,0 +1,19 @@
+############ Copying MSSQLSetup.ps1 file to target machine ########
+- name: Copy setup script file to windows machine
+  win_copy:
+    src: './MSSQLSetup.ps1'
+    dest: 'C:\SQL-SW\MSSQLSetup.ps1'
+  register: copyscript_output
+- name: Showing the logs of Copying the scripts 
+  debug:
+    msg: "{{ copyscript_output }}"
+
+############ Copying MSSQLPatch.ps1 file to target machine ########
+- name: Copy patch script file to windows machine
+  win_copy:
+    src: './MSSQLPatch.ps1'
+    dest: 'C:\SQL-SW\MSSQLPatch.ps1'
+  register: patchscript_output
+- name: Showing the logs of Copying the patch scripts 
+  debug:
+    msg: "{{ patchscript_output }}"

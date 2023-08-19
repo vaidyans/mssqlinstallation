@@ -1,0 +1,13 @@
+# - name: Rebooting the windows machine
+#   win_reboot:
+
+- name: Restart Computer
+  win_shell: |
+      Restart-Computer -Force
+  register: reboot_output
+- name: Showing the reboot logs
+  debug:
+    msg: "{{ reboot_output }}"
+- name: Task - Wait for WinRM Port to answer  (Port 5986 for secure https)
+  pause:
+    minutes: 2
