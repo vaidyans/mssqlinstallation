@@ -19,7 +19,7 @@
 - name: create DBAMaint DB
 # win_shell: "{{ item }}"
 # with_items:
-  win_command: sqlcmd -S ukimdlmawsnod01\sqltest2 -i C:\SQL-SW\DBAMaint.sql -E
+  win_command: sqlcmd -S win2012stdVM2\WISESQL1 -i C:\SQL-SW\DBAMaint.sql -E
 #  win_command: sqlcmd -S UKIMDLMAWSNOD01\WISESQL1 -i C:\SQL-SW\postinstallation.sql -E
    
   register: DBAMaint_sql
@@ -29,7 +29,7 @@
 
 ####### Run post installation T-SQL script ########
 - name: run postinstallation
-  win_command: sqlcmd -S ukimdlmawsnod01\sqltest2 -i C:\SQL-SW\postinstallation.sql -E
+  win_command: sqlcmd -S win2012stdVM2\WISESQL1 -i C:\SQL-SW\postinstallation.sql -E
    
   register: postinstallation_sql
 - name: Showing the logs of postinstallation_sql  
