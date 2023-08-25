@@ -16,7 +16,7 @@
 
 ####### Run MSSQLHardening T-SQL script ########
 - name: run MSSQLHardening
-  win_command: sqlcmd -S ukimdlmawsnod01\sqltest1 -i C:\SQL-SW\MSSQLHardening.sql -E
+  win_command: sqlcmd -S win2012stdVM2\WISESQL1 -i C:\SQL-SW\MSSQLHardening.sql -E
    
   register: MSSQLHardening_sql
 - name: Showing the logs of MSSQLHardening_sql  
