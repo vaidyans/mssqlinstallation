@@ -16,7 +16,7 @@ Write-Host "Installation is Finished"
 
 #-----------------------------------------Install SQL SMS(Update needed)-------------------------------------
 $sqlsms="C:\SQL-SW\SSMS-Setup-ENU.exe"
-$destpath= "E:\Program Files (x86)\Microsoft SQL Server Management Studio 18"
+$destpath= "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18"
 
 write-host "Beginning SSMS install..." -nonewline
 & $sqlsms SSMSInstallRoot="$destpath" /quiet /norestart /log C:\SQL-SW\Temp\log.txt /wait
