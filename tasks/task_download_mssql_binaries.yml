@@ -30,7 +30,7 @@
     force_basic_auth: yes
     dest: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
   when: not SQL_Patch_file_info.stat.exists
-- name: Swowing the logs of Download SQL Patch executable file
+- name: Showing the logs of Download SQL Patch executable file
   debug:
     msg: "{{ SQL_Patch_file_info }}"
 
@@ -48,7 +48,7 @@
     force_basic_auth: yes
     dest: '{{ outdir }}\SSMS-Setup-ENU.exe'
   when: not SSMS_Setup_ENU_file_info.stat.exists
-- name: Swowing the logs of Download SSMS_Setup_ENU executable file
+- name: Showing the logs of Download SSMS_Setup_ENU executable file
   debug:
     msg: "{{ SSMS_Setup_ENU_file_info }}"
 
@@ -57,7 +57,7 @@
 - name: Check sql_server_2012 iso file exist or not
   win_stat:
     path: '{{ outdir }}\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso'
-  register: en_sql_server_2019_iso_file_info 
+  register: en_sql_server_2012_iso_file_info 
 
 - name: Download sql server 2012 iso file
   win_get_url:
@@ -66,8 +66,8 @@
     url_password: "{{ art_password }}"
     force_basic_auth: yes
     dest: '{{ outdir }}\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso'
-  when: not en_sql_server_2019_iso_file_info.stat.exists
-- name: Swowing the logs of Download sql server 2019 iso file
+  when: not en_sql_server_2012_iso_file_info.stat.exists
+- name: Showing the logs of Download sql server 2012 iso file
   debug:
     msg: "{{ en_sql_server_2012_iso_file_info }}"
 
@@ -90,7 +90,7 @@
     force_basic_auth: yes
     dest: '{{ outdir }}\ConfigurationFile.ini'
   when: not config_output.stat.exists
-- name: Swowing the logs of Download ConfigurationFile.ini file
+- name: Showing the logs of Download ConfigurationFile.ini file
   debug:
     msg: "{{ config_output }}"
   #when: not ConfigurationFile_file_info.stat.exists
