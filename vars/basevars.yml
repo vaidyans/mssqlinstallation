@@ -2,14 +2,9 @@
 outdir: C:\SQL-SW
 art_username: "svc-lmcp-generic"
 art_password: "kr^79@wHbF)&p"
-#if above artifactory credentials not works, use below;
-#art_username: vsivapragasa
-#art_password: "Database@1947"
 
 art_url: "https://artifactory.platformdxc-mg.com/artifactory/platformlma-generi>
 
-#user: 'LMAPRODR\z-winrm_svc'
-#password: "Qwerty@123"
 user: 'mydemodc\administrator'
 passowrd: "Database@1234"
 
