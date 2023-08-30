@@ -6,6 +6,6 @@
   art_url: "https://artifactory.platformdxc-mg.com/artifactory/platformlma-generi>
 
   user: 'mydemodc\administrator'
-  passowrd: "Database@1234"
+  password: "Database@1234"
 
   sql_sa_password: "!Qazxsw23edc"
