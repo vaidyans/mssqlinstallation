@@ -53,23 +53,23 @@
     msg: "{{ SSMS_Setup_ENU_file_info }}"
 
 
-########### Downloading sql_server_2019 iso file ############
-- name: Check sql_server_2019 iso file exist or not
+########### Downloading sql_server_2012 iso file ############
+- name: Check sql_server_2012 iso file exist or not
   win_stat:
-    path: '{{ outdir }}\en_sql_server_2019_developer_x64_dvd_baea4195.iso'
+    path: '{{ outdir }}\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso'
   register: en_sql_server_2019_iso_file_info 
 
-- name: Download sql server 2019 iso file
+- name: Download sql server 2012 iso file
   win_get_url:
-    url: "{{ art_url }}/en_sql_server_2019_developer_x64_dvd_baea4195.iso"
+    url: "{{ art_url }}/en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso"
     url_username: "{{ art_username }}"
     url_password: "{{ art_password }}"
     force_basic_auth: yes
-    dest: '{{ outdir }}\en_sql_server_2019_developer_x64_dvd_baea4195.iso'
+    dest: '{{ outdir }}\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso'
   when: not en_sql_server_2019_iso_file_info.stat.exists
 - name: Swowing the logs of Download sql server 2019 iso file
   debug:
-    msg: "{{ en_sql_server_2019_iso_file_info }}"
+    msg: "{{ en_sql_server_2012_iso_file_info }}"
 
   ############ Download ConfigurationFile.ini file to target machine ########
 # - name: Check ConfigurationFile.ini file exist or not
