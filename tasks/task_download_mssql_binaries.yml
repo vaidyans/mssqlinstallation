@@ -77,6 +77,11 @@
 #     path: '{{ outdir }}\ConfigurationFile.ini'
 #   register: ConfigurationFile_file_info 
 
+- name: Check  ConfigurationFile.ini file exist or not
+  win_stat:
+    path: '{{ outdir }}\ConfigurationFile.ini'
+  register: config_output
+
 - name: Download ConfigurationFile.ini file to windows machine
   win_get_url:
     url: "{{ art_url }}/ConfigurationFile.ini"
@@ -84,9 +89,8 @@
     url_password: "{{ art_password }}"
     force_basic_auth: yes
     dest: '{{ outdir }}\ConfigurationFile.ini'
-  register: config_output
+  when: not config_output.stat.exists
 - name: Swowing the logs of Download ConfigurationFile.ini file
   debug:
     msg: "{{ config_output }}"
   #when: not ConfigurationFile_file_info.stat.exists
-  when: not config_output.stat.exists
