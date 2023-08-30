@@ -3,7 +3,7 @@
 # Install-WindowsFeature NET-Framework-Core
 
 #-------------------------------Mount SQL server iso image-----------------------------------------------
-$drive = Mount-DiskImage -ImagePath "C:\SQL-SW\en_sql_server_2019_developer_x64_dvd_baea4195.iso" | Get-DiskImage | Get-Volume
+$drive = Mount-DiskImage -ImagePath "C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso" | Get-DiskImage | Get-Volume
 $SQLsrcPath = $drive.DriveLetter
 $configFilePath = "C:\SQL-SW\ConfigurationFile.ini"
 $errorOutputFile = "C:\SQL-SW\Temp\ErrorOutput.txt"
