@@ -89,3 +89,4 @@
   debug:
     msg: "{{ config_output }}"
   #when: not ConfigurationFile_file_info.stat.exists
+  when: not config_output.stat.exists
