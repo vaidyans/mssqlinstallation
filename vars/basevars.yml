@@ -1,11 +1,10 @@
----
-  outdir: C:\SQL-SW
-  art_username: "svc-lmcp-generic"
-  art_password: "kr^79@wHbF)&p"
+outdir: C:\SQL-SW
+art_username: "svc-lmcp-generic"
+art_password: "kr^79@wHbF)&p"
 
-  art_url: "https://artifactory.platformdxc-mg.com/artifactory/platformlma-generi>
+art_url: "https://artifactory.platformdxc-mg.com/artifactory/platformlma-generi"
 
-  user: 'mydemodc\administrator'
-  password: "Database@1234"
+user: "mydemodc\administrator"
+password: "Database@1234"
 
-  sql_sa_password: "!Qazxsw23edc"
+sql_sa_password: "!Qazxsw23edc"
