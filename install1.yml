@@ -1,5 +1,9 @@
-- name: "include base vars file"
-  include_vars: vars/basevars.yml
+---
+- hosts: all
+  become: false
+  tasks:
+  - name: "include base vars file"
+    include_vars: vars/basevars.yml
 
 ####### Downloading software on remote machine #######
 - name: Download MSSQL 2019 binaries
