@@ -3,11 +3,10 @@
 # Install-WindowsFeature NET-Framework-Core
 
 #-------------------------------Mount SQL server iso image-----------------------------------------------
-Set-ExecutionPolicy Unrestricted
-set-executionpolicy remotesigned
-
 $drive = Mount-DiskImage C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso -PassThru | Get-Volume
+echo $drive
 $SQLsrcPath = $drive.DriveLetter
+echo $SQLsrcPath
 $configFilePath = "C:\SQL-SW\ConfigurationFile.ini"
 $errorOutputFile = "C:\SQL-SW\Temp\ErrorOutput.txt"
 $standardOutputFile = "C:\SQL-SW\Temp\StandardOutput.txt"
