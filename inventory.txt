@@ -1,6 +1,6 @@
 [target1]
 192.168.1.23
-#192.168.1.24
+192.168.1.24
 [target1:vars]
 ansible_user='mydemodc\Administrator'
 ansible_password='Database@1234'
