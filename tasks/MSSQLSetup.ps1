@@ -15,9 +15,9 @@ Start-Process ${SQLsrcPath}:\setup.exe "/ConfigurationFile=$configFilePath" -Wai
 Write-Host "Installation is Finished"
 
 #-----------------------------------------Install SQL SMS(Update needed)-------------------------------------
-$sqlsms="C:\SQL-SW\SSMS-Setup-ENU.exe"
-$destpath= "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18"
+# vaidya commetned on 01-sep-2023 $sqlsms="C:\SQL-SW\SSMS-Setup-ENU.exe"
+# vaidya commetned on 01-sep-2023 $destpath= "C:\Program Files (x86)\Microsoft SQL Server Management Studio 18"
 
-write-host "Beginning SSMS install..." -nonewline
-# & $sqlsms SSMSInstallRoot="$destpath" /quiet /norestart /log C:\SQL-SW\Temp\log.txt /wait
-write-host "It will take 10-12 mins to finish the installation depending on the CPU, RAM..."
+# vaidya commetned on 01-sep-2023 write-host "Beginning SSMS install..." -nonewline
+# already commented. & $sqlsms SSMSInstallRoot="$destpath" /quiet /norestart /log C:\SQL-SW\Temp\log.txt /wait
+# vaidya commetned on 01-sep-2023 write-host "It will take 10-12 mins to finish the installation depending on the CPU, RAM..."
