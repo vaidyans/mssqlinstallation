@@ -6,7 +6,7 @@
 Set-ExecutionPolicy Unrestricted
 set-executionpolicy remotesigned
 
-$drive = Mount-DiskImage -ImagePath "C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso" | Get-DiskImage | Get-Volume
+$drive = Mount-DiskImage C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso | Get-Volume
 $SQLsrcPath = $drive.DriveLetter
 $configFilePath = "C:\SQL-SW\ConfigurationFile.ini"
 $errorOutputFile = "C:\SQL-SW\Temp\ErrorOutput.txt"
