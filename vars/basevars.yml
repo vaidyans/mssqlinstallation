@@ -6,7 +6,7 @@ user: 'mydemodc\administrator'
 password: 'Database@1947'
 sql_sa_password: "!Qazxsw23edc"
 
-mssql_patch_file_name: "C:\SQL-SW\SQLServer2012-KB4025925-x64.exe"
-mssql_binary_file_name: "C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso"
-configFilePath: "C:\SQL-SW\ConfigurationFile.ini"
+mssql_patch_file_name: 'C:\SQL-SW\SQLServer2012-KB4025925-x64.exe'
+mssql_binary_file_name: 'C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso'
+configFilePath: 'C:\SQL-SW\ConfigurationFile.ini'
 
