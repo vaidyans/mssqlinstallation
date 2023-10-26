@@ -2,6 +2,12 @@ outdir: C:\SQL-SW
 art_username: "svc-lmcp-generic"
 art_password: "kr^79@wHbF)&p"
 
+mssql_patch_file_name="C:\SQL-SW\SQLServer2012-KB4025925-x64.exe"
+
+mssql_binary_file_name="C:\SQL-SW\en_sql_server_2012_developer_edition_x86_x64_dvd_813280.iso"
+
+configFilePath = "C:\SQL-SW\ConfigurationFile.ini"
+
 art_url: "https://artifactory.platformdxc-mg.com/artifactory/platformlma-generi"
 
 user: 'mydemodc\administrator'
