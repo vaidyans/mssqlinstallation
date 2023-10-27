@@ -3,19 +3,19 @@
 # Install-WindowsFeature NET-Framework-Core
 
 #-------------------------------Mount SQL server iso image-----------------------------------------------
-Install-Module -Name powershell-yaml -Force -Scope CurrentUser
+#Install-Module -Name powershell-yaml -Force -Scope CurrentUser
 
 # Import the powershell-yaml module
-Import-Module powershell-yaml
+#Import-Module powershell-yaml
 
 # Specify the path to your YAML file
-$yamlFile = "https://github.com/vaidyans/mssqlinstallation/blob/master/vars/basevars.yml"
+#$yamlFile = "https://github.com/vaidyans/mssqlinstallation/blob/master/vars/basevars.yml"
 
 # Parse the YAML file
-$yamlData = ConvertFrom-Yaml -Path $yamlFile
+#$yamlData = ConvertFrom-Yaml -Path $yamlFile
 
 # Access the values from the YAML data
-$mssqlbinfile = $yamlData.mssql_binary_file_name
+$mssqlbinfile = mssql_binary_file_name
 
 $drive = Mount-DiskImage $mssqlbinfile -PassThru | Get-Volume
 echo $drive
