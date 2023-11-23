@@ -38,7 +38,7 @@
     msg: "{{ SQL_Patch_file_info }}"
 
 ########### Downloading SSMS-Setup-ENU executable file ############
-- name: Check SSMS-Setup-ENU executable file exist or not
+- name: Check SSMS-Setup-ENU executable file exist or not vaidya
   win_stat:
     path: '{{ outdir }}\SSMS-Setup-ENU.exe'
   register: SSMS_Setup_ENU_file_info
