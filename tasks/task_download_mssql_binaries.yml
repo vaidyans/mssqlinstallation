@@ -1,6 +1,7 @@
 - name: check if SQL-SW directory already exist
   win_stat:
     path: "{{ outdir }}"
+    msg: "{{ outdir }}"
   register: SQL_SW_directory_info
 - name: Showing the Exists Directory details
   debug:
@@ -20,13 +21,13 @@
 - name: Check SQL Patch executable file exist or not
   win_stat:
     #path: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
-    path: '{{ outdir }}\'+ mssql_patch_file_name
+    path: '{{ outdir }} - {{ mssql_patch_file_name }}'
   register: SQL_Patch_file_info 
 
 - name: Download SQL Patch executable file
   win_get_url:
     #url: "{{ art_url }}/SQLServer2012-KB4025925-x64.exe"
-    url: "{{ art_url }}/" + mssql_patch_file_name
+    url: "{{ art_url }}/ - {{ mssql_patch_file_name }}"
     url_username: "{{ art_username }}"
     url_password: "{{ art_password }}"    
     force_basic_auth: yes
