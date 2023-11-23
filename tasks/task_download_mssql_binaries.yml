@@ -1,4 +1,4 @@
-- name: check if SQL-SW directory already exist
+- name: check if SQL-SW directory already exist vaidya
   win_stat:
     path: "{{ outdir }}"
   register: SQL_SW_directory_info
@@ -38,7 +38,7 @@
     msg: "{{ SQL_Patch_file_info }}"
 
 ########### Downloading SSMS-Setup-ENU executable file ############
-- name: Check SSMS-Setup-ENU executable file exist or not vaidya
+- name: Check SSMS-Setup-ENU executable file exist or not 
   win_stat:
     path: '{{ outdir }}\SSMS-Setup-ENU.exe'
   register: SSMS_Setup_ENU_file_info
