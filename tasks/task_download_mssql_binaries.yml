@@ -32,7 +32,7 @@
     url_password: "{{ art_password }}"    
     force_basic_auth: yes
     #dest: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
-    dest: '{{ outdir }}\'+ mssql_patch_file_name
+    dest: '{{ outdir }}\ {{ mssql_patch_file_name }}'
   when: not SQL_Patch_file_info.stat.exists
 - name: Showing the logs of Download SQL Patch executable file
   debug:
