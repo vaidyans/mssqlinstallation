@@ -5,7 +5,7 @@
 - name: Showing the Exists Directory details
   debug:
     msg: "{{ SQL_SW_directory_info }}"
-
+    msg "{{ outdir }}"
 - name: Create SQL-SW directory
   win_file:
     path: "{{ outdir }}"
