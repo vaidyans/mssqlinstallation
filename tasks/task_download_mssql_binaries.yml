@@ -19,16 +19,19 @@
 ########### Downloading SQL Patch executable file ############
 - name: Check SQL Patch executable file exist or not
   win_stat:
-    path: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
+    #path: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
+    path: '{{ outdir }}\'+ mssql_patch_file_name
   register: SQL_Patch_file_info 
 
 - name: Download SQL Patch executable file
   win_get_url:
-    url: "{{ art_url }}/SQLServer2012-KB4025925-x64.exe"
+    #url: "{{ art_url }}/SQLServer2012-KB4025925-x64.exe"
+    url: "{{ art_url }}/" + mssql_patch_file_name
     url_username: "{{ art_username }}"
     url_password: "{{ art_password }}"    
     force_basic_auth: yes
-    dest: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
+    #dest: '{{ outdir }}\SQLServer2012-KB4025925-x64.exe'
+    dest: '{{ outdir }}\'+ mssql_patch_file_name
   when: not SQL_Patch_file_info.stat.exists
 - name: Showing the logs of Download SQL Patch executable file
   debug:
