@@ -1,7 +1,6 @@
 - name: check if SQL-SW directory already exist
   win_stat:
     path: "{{ outdir }}"
-    msg: "{{ outdir }}"
   register: SQL_SW_directory_info
 - name: Showing the Exists Directory details
   debug:
